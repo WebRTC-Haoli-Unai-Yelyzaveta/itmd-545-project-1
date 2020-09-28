@@ -6,15 +6,20 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const io = require("socket.io")();
-
 //Add fs module
 const fs = require("fs");
-var old_file = fs.readFileSync('./var/file.txt', {encoding:"utf8"});
+//Add diff module
 const diff = require("diff");
-
+//Add EventEmitter class
+const {EventEmitter} = require('events');
+//
 const indexRouter = require("./routes/index");
-
 const app = express();
+
+var old_file = fs.readFileSync('./var/file.txt', {encoding:"utf8"});
+var fileEvent = new EventEmitter();
+
+
 
 //Diff testing locally
 fs.watch('./var/file.txt', function(eventType, filename){
@@ -24,23 +29,30 @@ fs.watch('./var/file.txt', function(eventType, filename){
     //console.log(data); This logs the data without string format.
     //To be able to see it as a string representation, add "{encoding: "utf8"}" object before the callback function
     var new_file = data;
-    if (new_file !== old_file) {
+    if (new_file !== old_file)
+    {
       console.log(`The content of ${filename} has changed. It was a ${eventType} event.`);
+
+
       var file_changes = diff.diffLines(old_file, new_file);
-      console.log(`Here are the changes (promise!):`);
-      file_changes.forEach((change, i) => {
+      //console.log(`Here are the changes (promise!):`);
+      var new_changes = file_changes.map((change, i) => {
         if (change.added){
-          console.log(`Added: ${change.value}`);
+          return `<li class="ins">${change.value}</li>`;
         }
         if (change.removed){
-          console.log(`Removed: ${change.value}`);
+          return `<li class="del">${change.value}</li>`;
         }
       });
-
+      fileEvent.emit('changed file', new_changes.join('\n'));
     }
     old_file = new_file
   });
+});
 
+//When the `changed file` event fires, log changes locally
+fileEvent.on('changed file', function(data){
+  console.log(`The file was changed and fired an event. This are the changes:\n${data}`);
 });
 
 // view engine setup
@@ -58,12 +70,17 @@ app.use("/", indexRouter);
 // send a message on successful socket connection
 io.on('connection', function(socket){
   socket.emit('message', 'Successfully connected.');
-  //test if client receive data
+  //test if client receives data
   socket.on('message received', function(data){
     console.log('Client is saying:' + data)
   })
+
 });
 
+//when `changed file` event fires, send changes to browser
+fileEvent.on(`changed file`, function(data){
+  io.emit('diffed changes', data);
+});
 
 
 // catch 404 and forward to error handler

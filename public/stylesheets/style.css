@@ -6,3 +6,13 @@ body {
 a {
   color: #00B7FF;
 }
+
+ins,
+.ins {
+  color: green;
+}
+
+del,
+.del {
+  color: red;
+}
