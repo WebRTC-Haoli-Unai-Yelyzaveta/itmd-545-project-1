@@ -1,4 +1,6 @@
 body {
+  background-image: url("background.jpg");
+ color: Black;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -16,3 +18,28 @@ del,
 .del {
   color: red;
 }
+
+
+.box{
+  margin: auto;
+  padding: 2%;
+  margin-top: 2%;
+width: 75%;
+background-color: white;
+
+}
+
+.boxtwo{
+  margin: auto;
+  padding: 2%;
+  margin-top: 4%;
+width: 75%;
+background-color: white;
+
+}
+
+.stamp{
+  margin-top: 4%;
+  font-weight: bold;
+}
+

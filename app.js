@@ -12,7 +12,10 @@ const fs = require("fs");
 const diff = require("diff");
 //Add EventEmitter class
 const {EventEmitter} = require('events');
-//
+
+const axios = require('axios');
+const cheerio = require('cheerio');
+
 const indexRouter = require("./routes/index");
 const app = express();
 
@@ -20,6 +23,22 @@ var old_file = fs.readFileSync('./var/file.txt', {encoding:"utf8"});
 var fileEvent = new EventEmitter();
 
 
+//requesting html from the webpage
+axios.get('https://www.weather.gov/ilx/maxtemp')
+  .then((res) => {
+    if (res.status === 200){
+      const html = res.data;
+      //load html into cheerio
+      const $ = cheerio.load(html);
+      //loading weather infomation
+      const weatherInfo = $('pre');
+      const output = weatherInfo.html();
+      console.log(output);
+    }
+  })
+  .catch((error) => {
+    console.log('Fail to fetch', error);
+  })
 
 //Diff testing locally
 fs.watch('./var/file.txt', function(eventType, filename){
@@ -31,9 +50,47 @@ fs.watch('./var/file.txt', function(eventType, filename){
     var new_file = data;
     if (new_file !== old_file)
     {
+
+
       console.log(`The content of ${filename} has changed. It was a ${eventType} event.`);
 
+/*
 
+  if ('Notification' in window) {
+    console.log('This browser supports notifications!');
+    var notify_me_button = document.createElement('button');
+    notify_me_button.id = "notify-me";
+    notify_me_button.innerText = 'Send me Notifications';
+    notify_me_button.addEventListener('click', function(event) {
+      Notification.requestPermission()
+        .then(function(permission) {
+          console.log('Permission: ', permission)
+        })
+        .catch(function(error) {
+          console.error('Permission error:', error);
+        });
+    });
+
+    document.querySelector('body').append(notify_me_button);
+
+    if(Notification.permission == 'granted') {
+      console.log('Permission granted for notifications');
+      var test_notify_button = document.createElement('button');
+      test_notify_button.id = "test-notify";
+      test_notify_button.innerText = 'Send Test Notification';
+      test_notify_button.addEventListener('click', function(event) {
+        var notification = new Notification('Hello! This is a notification!');
+        notification.addEventListener('click', function(event) {
+          notification.close();
+        });
+      });
+      document.querySelector('body').append(test_notify_button);
+    }
+
+
+  } // end of if Notification...
+*/
+      
       var file_changes = diff.diffLines(old_file, new_file);
       //console.log(`Here are the changes (promise!):`);
       var new_changes = file_changes.map((change, i) => {
@@ -54,6 +111,7 @@ fs.watch('./var/file.txt', function(eventType, filename){
 fileEvent.on('changed file', function(data){
   console.log(`The file was changed and fired an event. This are the changes:\n${data}`);
 });
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

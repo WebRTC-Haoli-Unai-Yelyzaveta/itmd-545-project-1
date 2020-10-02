@@ -1,5 +1,6 @@
 Test to show progress!
 
+<<<<<<< HEAD
 Yeah this is not so interesting...
 
 but it could be even more interesting!
@@ -10,3 +11,9 @@ Now we are working on the frontend part of the project and learning how to use c
 for web scraping
 
 test in main work!
+=======
+Tarara nanana nenenene
+
+
+New content added!
+>>>>>>> 564e00c92f5296e12c1946f67347dc9a3d326f0b
