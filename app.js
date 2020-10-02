@@ -33,7 +33,11 @@ axios.get('https://www.weather.gov/ilx/maxtemp')
       //loading weather infomation
       const weatherInfo = $('pre');
       const output = weatherInfo.html();
-      console.log(output);
+      //console.log(output);
+      fs.writeFile('./var/file.txt', output, error => {
+        //In case of error throw err exception
+        if (error) throw err;
+      });
     }
   })
   .catch((error) => {
@@ -50,7 +54,6 @@ fs.watch('./var/file.txt', function(eventType, filename){
     var new_file = data;
     if (new_file !== old_file)
     {
-
 
       console.log(`The content of ${filename} has changed. It was a ${eventType} event.`);
 
@@ -90,7 +93,7 @@ fs.watch('./var/file.txt', function(eventType, filename){
 
   } // end of if Notification...
 */
-      
+
       var file_changes = diff.diffLines(old_file, new_file);
       //console.log(`Here are the changes (promise!):`);
       var new_changes = file_changes.map((change, i) => {
