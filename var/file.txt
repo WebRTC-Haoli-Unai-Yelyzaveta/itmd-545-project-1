@@ -1,19 +1,146 @@
-Test to show progress!
 
-<<<<<<< HEAD
-Yeah this is not so interesting...
-
-but it could be even more interesting!
-
-This works when we change our file.txt locally
-
-Now we are working on the frontend part of the project and learning how to use cheerio
-for web scraping
-
-test in main work!
-=======
-Tarara nanana nenenene
+24 HOUR MAXIMUM TEMPERATURE DATA IN DEGREES FAHRENHEIT,
+FOR ILLINOIS AND THE SURROUNDING STATES, INCLUDING
+24-HR DATA THROUGH 7 AM, FRIDAY OCTOBER 2, 2020.
 
 
-New content added!
->>>>>>> 564e00c92f5296e12c1946f67347dc9a3d326f0b
+  ILLINOIS
+
+    CAIRO 3N                               74
+    GRAND CHAIN DAM                        73
+    LAWRENCEVILLE-VINCENNES AIRPORT        72
+    CARBONDALE AIRPORT                     71
+    ROSICLARE                              70
+    IUKA 12SW                              69
+    CASEY                                  69
+    SALEM                                  68
+    OLNEY 2S                               68
+    MT VERNON                              68
+    KASKASKIA LOCKS                        68
+    FLORA                                  68
+    CAHOKIA AIRPORT                        68
+    BRIDGEPORT                             68
+    ROBINSON WTYE                          67
+    GLADSTONE LOCK AND DAM 18              67
+    MATTOON AIRPORT                        66
+    LA HARPE                               66
+    SULLIVAN 3S                            65
+    RAMSEY                                 65
+    PANA SEWAGE PLANT                      65
+    SIDELL 5NW                             64
+    PAXTON 2WSW                            64
+    JERSEYVILLE 2SW                        64
+    DANVILLE AIRPORT                       64
+    CHENOA 2                               64
+    CHAMPAIGN WILLARD AIRPORT              64
+    WINDSOR SEWAGE PLANT                   63
+    SPRINGFIELD CAPITAL AIRPORT            63
+    LINCOLN NWS                            63
+    JACKSONVILLE                           63
+    DECATUR AIRPORT                        63
+    TUSCOLA                                62
+    QUINCY AIRPORT                         62
+    PERRY                                  62
+    PARIS SEWAGE PLANT                     62
+    OGDEN                                  62
+    NORMAL 4NE                             62
+    PITTSFIELD                             61
+    PEORIA INTERNATIONAL AIRPORT           61
+    ROCKFORD AIRPORT                       60
+    QUINCY LOCK AND DAM 21                 60
+    PRAIRIE CITY 2S                        60
+    MOLINE AIRPORT                         60
+    MACOMB AIRPORT                         60
+    KANKAKEE                               60
+    BLOOMINGTON AIRPORT                    60
+    BENTLEY                                60
+    WAUKEGAN AIRPORT                       59
+    STERLING AIRPORT                       59
+    MORRIS                                 59
+    MONMOUTH                               59
+    LACON AIRPORT                          59
+    KNOXVILLE                              59
+    FREEPORT                               59
+    DWIGHT                                 59
+    COAL CITY 4NNW                         59
+    CHICAGO OHARE AIRPORT                  59
+    WHEATON                                58
+    PARK FOREST                            58
+    MCHENRY                                58
+    MARSEILLES                             58
+    JOLIET LOCK AND DAM                    58
+    ELGIN                                  58
+    CHICAGO WHEELING AIRPORT               58
+    CHICAGO MIDWAY AIRPORT                 58
+    CHICAGO DUPAGE AIRPORT                 58
+    AVON                                   58
+    AURORA AIRPORT                         58
+    AURORA                                 58
+    ALTONA                                 58
+    ROCHELLE AIRPORT                       57
+    OTTAWA 5SW                             57
+    MUNDELEIN 4WSW                         57
+    GALESBURG                              57
+    ELIZABETH                              57
+    KEWANEE                                56
+    DEKALB NIU                             56
+    BARRINGTON 3SW                         56
+
+
+  WESTERN INDIANA
+
+    EVANSVILLE AIRPORT                     72
+    MOUNT VERNON                           71
+    PERRYSVILLE                            64
+
+
+
+  SOUTHEASTERN IOWA
+
+    DONNELLSON                             68
+    MUSCATINE                              58
+    MAQUOKETA 4W                           58
+    MANCHESTER                             58
+    KEOKUK LOCK AND DAM 19                 58
+    DAVENPORT AIRPORT                      58
+    BURLINGTON AIRPORT                     58
+    ANAMOSA 3SSW                           58
+    DUBUQUE AIRPORT                        57
+
+
+  EASTERN MISSOURI
+
+    SIKESTON                               73
+    CAPE GIRARDEAU AIRPORT                 73
+    WAPPAPELLO                             71
+    CLEARWATER DAM                         69
+    ST LOUIS LAMBERT AIRPORT               68
+    ST CHARLES AIRPORT                     68
+    SPIRIT OF ST LOUIS AIRPORT             68
+    FESTUS                                 68
+    WASHINGTON                             66
+    FREEDOM                                65
+    CLARKSVILLE LD 24                      64
+    WARRENTON                              63
+    HANNIBAL                               63
+    BOWLING GREEN                          63
+    STEFFENVILLE                           62
+    MONROE CITY                            62
+    VANDALIA                               61
+    SHELBINA                               61
+
+
+
+  WESTERN KENTUCKY
+
+    PADUCAH AIRPORT                        74
+    AURORA                                 74
+    PROVIDENCE                             72
+
+
+
+  SOUTHERN WISCONSIN
+
+   NO MAXIMUM TEMPERATURE REPORTS WERE RECEIVED.
+
+END
