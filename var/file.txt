@@ -1,6 +1,12 @@
-Fresh start!
-YES!
-always yes!
-Yeah I got your message should NOT log out.
+Test to show progress!
 
-Tarara nanana nenenene
+Yeah this is not so interesting...
+
+but it could be even more interesting!
+
+This works when we change our file.txt locally
+
+Now we are working on the frontend part of the project and learning how to use cheerio
+for web scraping
+
+test in main work!
