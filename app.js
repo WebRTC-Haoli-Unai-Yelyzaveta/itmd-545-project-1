@@ -28,6 +28,27 @@ fs.watch('./var/weatherData.json', function(eventType, filename){
   fs.promises.readFile(`./var/${filename}`,{encoding:"utf8"})
   .then(function(data) {
     var new_file = data;
+    //only extract temperater and location data in IL
+    var new_data = JSON.parse(new_file).data.ILLINOIS;
+    var old_data = JSON.parse(old_file).data.ILLINOIS;
+
+    if (new_file !== old_file)
+    {
+      console.log(`The content of ${filename} has changed. It was a ${eventType} event.`);
+      var file_changes = diff.diffJson(old_data, new_data);
+      var new_changes = file_changes.map((change, i) => {
+        if (change.added){
+          return `<li class="ins">${change.value}</li>`;
+        }
+        if (change.removed){
+          return `<li class="del">${change.value}</li>`;
+        }
+      });
+      fileEvent.emit('changed file', new_changes.join('\n'));
+    }
+    old_file = new_file
+
+    //notification
     const vapid_keys = {
         public: 'BMJ9IpyHYOZIPP4fkxbmu_rd3CD95Bw_ehAJc8KSyvR04QWU78xHOw9A0e07OYwPA4bO2SjF_BT0Z1xYViLSZbI',
         private: 'uhONt3RMY8ooDWp1vZ15_aWojSCcbumeJ27FaTx5tlM',
@@ -59,24 +80,6 @@ fs.watch('./var/weatherData.json', function(eventType, filename){
     .catch(function(error) {
          console.error('Error: ', error);
     });
-
-
-    if (new_file !== old_file)
-    {
-      console.log("Here?");
-      console.log(`The content of ${filename} has changed. It was a ${eventType} event.`);
-      var file_changes = diff.diffLines(old_file, new_file);
-      var new_changes = file_changes.map((change, i) => {
-        if (change.added){
-          return `<li class="ins">${change.value}</li>`;
-        }
-        if (change.removed){
-          return `<li class="del">${change.value}</li>`;
-        }
-      });
-      fileEvent.emit('changed file', new_changes.join('\n'));
-    }
-    old_file = new_file
 
   });
 });
@@ -113,7 +116,7 @@ function requestData() {
           }
         });
         //convert object to a json string
-        console.log("Testing here:");
+        // console.log("Testing here:");
         var weatherData = JSON.stringify(json);
         fs.writeFile('./var/weatherData.json', weatherData, (error) => {
             if (error) throw err;
