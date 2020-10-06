@@ -20,11 +20,11 @@ const webPush = require('web-push')
 const app = express();
 
 
-var old_file = fs.readFileSync('./var/file.txt', {encoding:"utf8"});
+var old_file = fs.readFileSync('./var/weatherData.json', {encoding:"utf8"});
 var fileEvent = new EventEmitter();
 
 //Diff testing locally
-fs.watch('./var/file.txt', function(eventType, filename){
+fs.watch('./var/weatherData.json', function(eventType, filename){
   fs.promises.readFile(`./var/${filename}`,{encoding:"utf8"})
   .then(function(data) {
     var new_file = data;
