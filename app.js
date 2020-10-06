@@ -108,7 +108,6 @@ function requestData() {
             //state
             state = arr.join(" ");
             json['data'][state] = {};
-            console.log(json['data']);
           } else {
             //location
             var location = arr.slice(0,arr.length-1).join(" ");
@@ -121,10 +120,6 @@ function requestData() {
         fs.writeFile('./var/weatherData.json', weatherData, (error) => {
             if (error) throw err;
             console.log('Data written to json file');
-        });
-        fs.writeFile('./var/file.txt', output, error => {
-          //In case of error throw err exception
-          if (error) throw err;
         });
       }
     })
