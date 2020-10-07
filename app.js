@@ -27,7 +27,7 @@ var fileEvent = new EventEmitter();
 fs.watch('./var/weatherData.json', function(eventType, filename){
   fs.promises.readFile(`./var/${filename}`,{encoding:"utf8"})
   .then(function(data) {
-    var new_file = data;
+
 
         //notification
         const vapid_keys = {
@@ -61,7 +61,8 @@ fs.watch('./var/weatherData.json', function(eventType, filename){
         .catch(function(error) {
              console.error('Error: ', error);
         });
-        
+    //parse json string and get temperature differences bewteen old data and new data
+    var new_file = data;
     if (new_file !== old_file) {
       var new_data = JSON.parse(new_file)['data'];
       var old_data = JSON.parse(old_file)['data']
@@ -71,6 +72,8 @@ fs.watch('./var/weatherData.json', function(eventType, filename){
             if (old_data[state][location]) {
               var diff = temp - old_data[state][location];
               new_data[state][location] = {"temp": temp, "diff": diff};
+            } else {
+              new_data[state][location] = {"temp": temp, "diff": "N/A"};
             }
           }
         }
@@ -119,7 +122,6 @@ function requestData() {
         var weatherData = JSON.stringify(json);
         fs.writeFile('./var/weatherData.json', weatherData, (error) => {
             if (error) throw err;
-            console.log('Data written to json file');
         });
       }
     })

@@ -9,14 +9,37 @@ socket.on("message", function (data) {
   }
 });
 
+function generate_table_row() {
+  // creates a <table> element and a <tbody> element
+  var tbl = document.createElement("table");
+  var tblBody = document.createElement("tbody");
+  // creating all cells
+  for (var i = 0; i < 3; i++) {
+    // creates a table row
+    var row = document.createElement("tr");
+    tblBody.appendChild(row);
+  }
+  // put the <tbody> in the <table>
+  tbl.appendChild(tblBody);
+  // appends <table> into <body>
+  changes.appendChild(tbl);
+  // sets the border attribute of tbl to 2;
+  tbl.setAttribute("border", "2");
+}
+
 socket.on("diffed changes", function(data) {
   console.log(`This are the diffed changes: ${data}`);
-  var parent_li = document.createElement('li');
-  parent_li.innerText = 'Latest changes:';
-  var nested_ul = document.createElement('ul');
-  nested_ul.innerHTML += data;
-  parent_li.append(nested_ul);
-  changes.append(parent_li);
+  generate_table_row();
+  //parse data from backend
+  var changes = JSON.parse(data);
+  for (const [state, locations] of Object.entries(changes)) {
+    for (const [location, values] of Object.entries(locations)) {
+      for (const [temp, diff] of Object.entries(values)) {
+        console.log(temp);
+        console.log(diff);
+      }
+    }
+  }
 });
 
 if ('serviceWorker' in navigator) {
