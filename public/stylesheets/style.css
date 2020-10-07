@@ -43,3 +43,15 @@ background-color: white;
   font-weight: bold;
 }
 
+/* grid style */
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+.grid-item {
+  border: 1px solid;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}

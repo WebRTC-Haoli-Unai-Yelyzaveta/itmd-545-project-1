@@ -9,35 +9,35 @@ socket.on("message", function (data) {
   }
 });
 
-function generate_table_row() {
-  // creates a <table> element and a <tbody> element
-  var tbl = document.createElement("table");
-  var tblBody = document.createElement("tbody");
-  // creating all cells
-  for (var i = 0; i < 3; i++) {
-    // creates a table row
-    var row = document.createElement("tr");
-    tblBody.appendChild(row);
-  }
-  // put the <tbody> in the <table>
-  tbl.appendChild(tblBody);
-  // appends <table> into <body>
-  changes.appendChild(tbl);
-  // sets the border attribute of tbl to 2;
-  tbl.setAttribute("border", "2");
+function generateGrid() {
+  var container = document.createElement("div");
+  container.setAttribute("class", "grid-container");
+  changes.appendChild(container);
+  return container;
+}
+
+function generateCells(text) {
+  var item = document.createElement("div");
+  item.setAttribute("class", "grid-item");
+  var textNode = document.createTextNode(text);
+  item.appendChild(textNode);
+  return item;
 }
 
 socket.on("diffed changes", function(data) {
   console.log(`This are the diffed changes: ${data}`);
-  generate_table_row();
+  var container = generateGrid();
+  //generate grid header
+  container.appendChild(generateCells("Location"));
+  container.appendChild(generateCells("Temperature / °F"));
+  container.appendChild(generateCells("Temperature Differences Compared to Yesterday"));
   //parse data from backend
   var changes = JSON.parse(data);
   for (const [state, locations] of Object.entries(changes)) {
     for (const [location, values] of Object.entries(locations)) {
-      for (const [temp, diff] of Object.entries(values)) {
-        console.log(temp);
-        console.log(diff);
-      }
+      container.appendChild(generateCells(location));
+      container.appendChild(generateCells(values['temp']));
+      container.appendChild(generateCells(values['diff']));
     }
   }
 });
