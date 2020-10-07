@@ -9,6 +9,7 @@ socket.on("message", function (data) {
   }
 });
 
+//a function that generate the grid container
 function generateGrid() {
   var container = document.createElement("div");
   container.setAttribute("class", "grid-container");
@@ -16,7 +17,8 @@ function generateGrid() {
   return container;
 }
 
-function generateCells(text) {
+//a function that generates a cell for grid container
+function generateCell(text) {
   var item = document.createElement("div");
   item.setAttribute("class", "grid-item");
   var textNode = document.createTextNode(text);
@@ -26,18 +28,21 @@ function generateCells(text) {
 
 socket.on("diffed changes", function(data) {
   console.log(`This are the diffed changes: ${data}`);
+  //call function to generate the grid container
   var container = generateGrid();
   //generate grid header
-  container.appendChild(generateCells("Location"));
-  container.appendChild(generateCells("Temperature / °F"));
-  container.appendChild(generateCells("Temperature Differences Compared to Yesterday"));
+  container.appendChild(generateCell("Location"));
+  container.appendChild(generateCell("Temperature / °F"));
+  container.appendChild(generateCell("Temperature Differences Compared to Yesterday"));
   //parse data from backend
   var changes = JSON.parse(data);
+  //iterate a nested object and add weather data into each cell
   for (const [state, locations] of Object.entries(changes)) {
     for (const [location, values] of Object.entries(locations)) {
-      container.appendChild(generateCells(location));
-      container.appendChild(generateCells(values['temp']));
-      container.appendChild(generateCells(values['diff']));
+      //generate child elements and append to parent grid container
+      container.appendChild(generateCell(location));
+      container.appendChild(generateCell(values['temp']));
+      container.appendChild(generateCell(values['diff']));
     }
   }
 });
