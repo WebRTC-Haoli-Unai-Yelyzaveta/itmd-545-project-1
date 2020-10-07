@@ -55,3 +55,11 @@ background-color: white;
   font-size: 30px;
   text-align: center;
 }
+.grid-item-state {
+  border: 1px solid;
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  grid-column: span 1 / 4;
+  grid-row: span 1;
+}

@@ -26,18 +26,28 @@ function generateCell(text) {
   return item;
 }
 
+function generateHeader(state_name) {
+  var item = document.createElement("div");
+  item.setAttribute("class", "grid-item-state");
+  var textNode = document.createTextNode(state_name);
+  item.appendChild(textNode);
+  item.style.color = "#ff9900"; 
+  return item;
+}
+
 socket.on("diffed changes", function(data) {
   console.log(`This are the diffed changes: ${data}`);
   //call function to generate the grid container
   var container = generateGrid();
-  //generate grid header
-  container.appendChild(generateCell("Location"));
-  container.appendChild(generateCell("Temperature / °F"));
-  container.appendChild(generateCell("Temperature Differences Compared to Yesterday"));
   //parse data from backend
   var changes = JSON.parse(data);
   //iterate a nested object and add weather data into each cell
   for (const [state, locations] of Object.entries(changes)) {
+    container.appendChild(generateHeader(state));
+    //generate grid header
+    container.appendChild(generateCell("Location"));
+    container.appendChild(generateCell("Temperature / °F"));
+    container.appendChild(generateCell("Temperature Differences Compared to Yesterday"));
     for (const [location, values] of Object.entries(locations)) {
       //generate child elements and append to parent grid container
       container.appendChild(generateCell(location));
