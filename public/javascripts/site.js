@@ -31,7 +31,7 @@ function generateHeader(state_name) {
   item.setAttribute("class", "grid-item-state");
   var textNode = document.createTextNode(state_name);
   item.appendChild(textNode);
-  item.style.color = "#ff9900"; 
+  item.style.color = "#e9c46a"; 
   return item;
 }
 

@@ -1,8 +1,13 @@
 body {
-  background-image: url("background.jpg");
- color: Black;
+  background-color: #1AA79D;
+  color: Black;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1{
+  margin-bottom: 5%;
+  color: #e9c46a;
 }
 
 a {
@@ -19,25 +24,6 @@ del,
   color: red;
 }
 
-
-.box{
-  margin: auto;
-  padding: 2%;
-  margin-top: 2%;
-width: 75%;
-background-color: white;
-
-}
-
-.boxtwo{
-  margin: auto;
-  padding: 2%;
-  margin-top: 4%;
-width: 75%;
-background-color: white;
-
-}
-
 .stamp{
   margin-top: 4%;
   font-weight: bold;
@@ -51,14 +37,27 @@ background-color: white;
 }
 .grid-item {
   border: 1px solid;
-  padding: 20px;
-  font-size: 30px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight:bolder;
   text-align: center;
 }
 .grid-item-state {
+  color: #e9c46a;
+  border-color: #e9c46a;
+  font-weight: bolder;
   border: 5px solid;
-  padding: 20px;
-  font-size: 30px;
+  padding: 5px;
+  font-size: 15px;
   text-align: center;
   grid-column: span 3;
 }
+
+button{
+   box-shadow: none;
+  margin-top: 3%;
+  background-color: #e9c46a;
+  padding: 0.7%;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
